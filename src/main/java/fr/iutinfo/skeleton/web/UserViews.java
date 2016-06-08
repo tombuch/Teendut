@@ -28,11 +28,7 @@ public class UserViews {
     @Path("/{id}")
     public User getDetail(@PathParam("id") String id) {
         User user = null;
-        if ("-1".equals(id)) {
-            user = User.getAnonymousUser();
-        } else {
-            user = dao.findById(Integer.parseInt(id));
-        }
+        user = dao.findById(Integer.parseInt(id));
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         }
