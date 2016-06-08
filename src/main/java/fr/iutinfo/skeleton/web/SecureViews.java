@@ -62,7 +62,7 @@ public class SecureViews {
         logger.debug("Redirect to " + location);
         throw new WebApplicationException(Response
                 .temporaryRedirect(location)
-                .cookie(new NewCookie("user", currentUser.getName()))
+                .cookie(new NewCookie("user", currentUser.getNom()))
                 .build()
         );
     }

@@ -1,15 +1,11 @@
 package fr.iutinfo.skeleton.api;
 
-import com.google.common.base.Charsets;
-import com.google.common.hash.Hasher;
-import com.google.common.hash.Hashing;
+import java.security.Principal;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.security.Principal;
-import java.security.SecureRandom;
-
-public class Utilisateur implements Principal {
+public class Utilisateur {
     final static Logger logger = LoggerFactory.getLogger(Utilisateur.class);
 
     private String nom;
@@ -40,16 +36,15 @@ public class Utilisateur implements Principal {
     	this.nom = nom;
     }
 
-	@Override
-	public String getName() {
-		return this.nom;
-	}
-
 	public int getId() {
 		return id;
 	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getNom() {
+		return this.nom;
 	}
 }

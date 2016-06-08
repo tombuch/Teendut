@@ -39,7 +39,7 @@ public class UtilisateurResource {
 
     protected Utilisateur find(String name) {
         for (Utilisateur user : users.values()) {
-            if (user.getName().equals(name)) {
+            if (user.getNom().equals(name)) {
                 return user;
             }
         }
@@ -59,7 +59,7 @@ public class UtilisateurResource {
         if (user == null) {
             throw new WebApplicationException(404);
         }
-        oldUser.setNom(user.getName());
+        oldUser.setNom(user.getNom());
         return Response.status(200).entity(oldUser).build();
     }
 

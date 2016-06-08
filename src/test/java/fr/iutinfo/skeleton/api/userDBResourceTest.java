@@ -31,14 +31,14 @@ public class userDBResourceTest extends JerseyTest {
     public void read_should_return_a_user_as_object() {
         h.createUserWithName("foo");
         Utilisateur utilisateur = target("/userdb/foo").request().get(Utilisateur.class);
-        assertEquals("foo", utilisateur.getName());
+        assertEquals("foo", utilisateur.getNom());
     }
 
     @Test
     public void read_user_should_return_good_alias() {
         h.createUserWithAlias("richard stallman", "rms");
         Utilisateur user = target("/userdb/richard stallman").request().get(Utilisateur.class);
-        assertEquals("rms", user.getAlias());
+        assertEquals("rms", user.getNom());
     }
 
     @Test
@@ -48,24 +48,14 @@ public class userDBResourceTest extends JerseyTest {
         assertEquals("ian@debian.org", user.getEmail());
     }
 
-    @Test
-    public void read_user_should_return_user_with_same_salt() {
-        String expectedSalt = "graindesel";
-        h.createUserWithPassword("Mark Shuttleworth", "motdepasse", expectedSalt);
-        Utilisateur user = target("/userdb/Mark Shuttleworth").request().get(Utilisateur.class);
-        assertEquals(expectedSalt, user.getSalt());
-    }
 
-    @Test
-    public void read_user_should_return_hashed_password() throws NoSuchAlgorithmException {
-        h.createUserWithPassword("Loïc Dachary", "motdepasse", "grain de sable");
-        Utilisateur user = target("/userdb/Loïc Dachary").request().get(Utilisateur.class);
-        assertEquals("5f8619bc1f0e23ef5851cf7070732089", user.getPasswdHash());
-    }
+
+
 
     @Test
     public void create_should_return_the_user_with_valid_id() {
-        Utilisateur user = new Utilisateur(0, "thomas");
+        Utilisateur user = new Utilisateur();
+        user.setNom("thomas");
         Entity<Utilisateur> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
         String json = target("/userdb").request().post(userEntity).readEntity(String.class);
         assertEquals("{\"id\":1,\"name\":\"thomas\"", json.substring(0, 23));
@@ -86,7 +76,7 @@ public class userDBResourceTest extends JerseyTest {
         h.createUserWithName("bar");
         List<Utilisateur> users = target("/userdb/").request().get(new GenericType<List<Utilisateur>>() {
         });
-        assertEquals("foo", users.get(0).getName());
+        assertEquals("foo", users.get(0).getNom());
     }
 
 }
