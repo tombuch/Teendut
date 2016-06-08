@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class UserTest {
     @Test
     public void should_set_salt_at_build () {
-        User user = new User();
+        Utilisateur user = new Utilisateur();
         assertNotNull(user.getSalt());
         assertFalse(user.getSalt().isEmpty());
     }

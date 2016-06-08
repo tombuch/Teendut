@@ -1,6 +1,6 @@
 package fr.iutinfo.skeleton.utils;
 
-import fr.iutinfo.skeleton.api.User;
+import fr.iutinfo.skeleton.api.Utilisateur;
 
 import java.util.List;
 
@@ -18,20 +18,20 @@ public class RestClient {
         .get(String.class);
 	}
 	
-	public List<User> getUrlAsUser (String url) {
+	public List<Utilisateur> getUrlAsUser (String url) {
 		return ClientBuilder.newClient()//
         .target(url)
         .request()
-        .get(new GenericType<List<User>>(){});
+        .get(new GenericType<List<Utilisateur>>(){});
 	}
 	
-	public User addUser (User user, String url) {
-		Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+	public Utilisateur addUser (Utilisateur user, String url) {
+		Entity<Utilisateur> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
 		
 		return ClientBuilder.newClient()
 				.target(url)
 				.request()
 				.post(userEntity)
-				.readEntity(User.class);
+				.readEntity(Utilisateur.class);
 	}
 }

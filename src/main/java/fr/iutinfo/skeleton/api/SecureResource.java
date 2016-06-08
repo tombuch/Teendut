@@ -16,15 +16,15 @@ public class SecureResource {
 
     @GET
     @Path("/forall")
-    public User secureForAll(@Context SecurityContext context) {
-        return (User) context.getUserPrincipal();
+    public Utilisateur secureForAll(@Context SecurityContext context) {
+        return (Utilisateur) context.getUserPrincipal();
     }
 
     @GET
     @Path("/byannotation")
     @RolesAllowed({"user"})
-    public User secureByAnnotation(@Context SecurityContext context) {
-        return (User) context.getUserPrincipal();
+    public Utilisateur secureByAnnotation(@Context SecurityContext context) {
+        return (Utilisateur) context.getUserPrincipal();
     }
 
 }

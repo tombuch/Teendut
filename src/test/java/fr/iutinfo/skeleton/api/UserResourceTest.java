@@ -24,37 +24,37 @@ public class UserResourceTest extends JerseyTest {
 
     @Test
     public void testReadUserWithNameFooAsJsonString() {
-        User user = createUserWithName("foo");
+        Utilisateur user = createUserWithName("foo");
         String json = target("/user/foo").request().get(String.class);
         assertTrue(json.contains("\"name\":\"foo\""));
     }
 
     @Test
     public void testReadUserWithNameFooAsObject() {
-        User utilisateur = target("/user/foo").request().get(User.class);
+        Utilisateur utilisateur = target("/user/foo").request().get(Utilisateur.class);
         assertEquals("foo", utilisateur.getName());
     }
 
     @Test
     public void create_user_should_return_testCreateUserMustReturnUserWithId() {
-        User savedUser = createUserWithName("thomas");
+        Utilisateur savedUser = createUserWithName("thomas");
         assertTrue(savedUser.getId() > 0);
     }
 
     @Test
     public void testUpdateUserName() {
-        User u = createUserWithName("thomas");
+        Utilisateur u = createUserWithName("thomas");
         u.setName("yann");
         Response rep = target("/user").path("" + u.getId()).request()
                 .put(Entity.entity(u, MediaType.APPLICATION_JSON));
-        User updatedUser = rep.readEntity(User.class);
+        Utilisateur updatedUser = rep.readEntity(Utilisateur.class);
         assertEquals("yann", updatedUser.getName());
     }
 
     @Test
     public void testGetingSameUserTwice() {
-        User user1 = target("/user/foo").request().get(User.class);
-        User user2 = target("/user/foo").request().get(User.class);
+        Utilisateur user1 = target("/user/foo").request().get(Utilisateur.class);
+        Utilisateur user2 = target("/user/foo").request().get(Utilisateur.class);
         assertEquals(user1.toString(), user2.toString());
     }
 
@@ -68,14 +68,14 @@ public class UserResourceTest extends JerseyTest {
     public void tesListAllUsers() {
         createUserWithName("toto");
         createUserWithName("titi");
-        List<User> users = target("/user/").request().get(new GenericType<List<User>>() {
+        List<Utilisateur> users = target("/user/").request().get(new GenericType<List<Utilisateur>>() {
         });
         assertTrue(users.size() >= 2);
     }
 
     @Test
     public void after_delete_read_user_sould_return_202() {
-        User u = createUserWithName("toto");
+        Utilisateur u = createUserWithName("toto");
         int status = target("/user/" + u.getId()).request().delete().getStatus();
         assertEquals(ACCEPTED.getStatusCode(), status);
 
@@ -84,19 +84,19 @@ public class UserResourceTest extends JerseyTest {
     @Test
     public void read_user_richard_should_return_good_alias() {
         createUserWithAlias("richard stallman", "rms");
-        User user = target("/user/richard stallman").request().get(User.class);
+        Utilisateur user = target("/user/richard stallman").request().get(Utilisateur.class);
         assertEquals("rms", user.getAlias());
     }
 
-    private User createUserWithName(String name) {
-        User user = new User(0, name);
-        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target("/user").request().post(userEntity).readEntity(User.class);
+    private Utilisateur createUserWithName(String name) {
+        Utilisateur user = new Utilisateur(0, name);
+        Entity<Utilisateur> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        return target("/user").request().post(userEntity).readEntity(Utilisateur.class);
     }
 
-    private User createUserWithAlias(String name, String alias) {
-        User user = new User(0, name, alias);
-        Entity<User> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
-        return target("/user").request().post(userEntity).readEntity(User.class);
+    private Utilisateur createUserWithAlias(String name, String alias) {
+        Utilisateur user = new Utilisateur(0, name, alias);
+        Entity<Utilisateur> userEntity = Entity.entity(user, MediaType.APPLICATION_JSON);
+        return target("/user").request().post(userEntity).readEntity(Utilisateur.class);
     }
 }

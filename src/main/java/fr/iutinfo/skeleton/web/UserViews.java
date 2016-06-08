@@ -15,19 +15,19 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
 public class UserViews {
-    private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    private static UtilisateurDao dao = BDDFactory.getDbi().open(UtilisateurDao.class);
 
     @GET
     @Template
-    public List<User> getAll() {
+    public List<Utilisateur> getAll() {
         return dao.all();
     }
 
     @GET
     @Template(name = "detail")
     @Path("/{id}")
-    public User getDetail(@PathParam("id") String id) {
-        User user = null;
+    public Utilisateur getDetail(@PathParam("id") String id) {
+        Utilisateur user = null;
         user = dao.findById(Integer.parseInt(id));
         if (user == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);

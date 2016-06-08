@@ -16,31 +16,31 @@ public class Helper {
         dao.createUserTable();
     }
 
-    User createUserWithName(String name) {
-        User user = new User(0, name);
+    Utilisateur createUserWithName(String name) {
+        Utilisateur user = new Utilisateur(0, name);
         return createUser(user);
     }
 
-    User createUserWithAlias(String name, String alias) {
-        User user = new User(0, name, alias);
+    Utilisateur createUserWithAlias(String name, String alias) {
+        Utilisateur user = new Utilisateur(0, name, alias);
         return createUser(user);
     }
 
-    User createUserWithEmail(String name, String email) {
-        User user = new User(0, name);
+    Utilisateur createUserWithEmail(String name, String email) {
+        Utilisateur user = new Utilisateur(0, name);
         user.setEmail(email);
         return createUser(user);
     }
 
-    public User createUserWithPassword(String name, String passwd, String salt) {
-        User user = new User(0, name);
+    public Utilisateur createUserWithPassword(String name, String passwd, String salt) {
+        Utilisateur user = new Utilisateur(0, name);
         user.setSalt(salt);
         user.setPassword(passwd);
         logger.debug("createUserWithPassword Hash : " + user.getPasswdHash());
         return createUser(user);
     }
 
-    private User createUser(User user) {
+    private Utilisateur createUser(Utilisateur user) {
         int id = dao.insert(user);
         user.setId(id);
         return user;

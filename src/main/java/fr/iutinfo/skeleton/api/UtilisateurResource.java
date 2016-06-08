@@ -15,13 +15,13 @@ import java.util.Map;
 @Path("/user")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class UserResource {
-    private static Map<Integer, User> users = new HashMap<>();
-    Logger logger = LoggerFactory.getLogger(UserResource.class);
+public class UtilisateurResource {
+    private static Map<Integer, Utilisateur> users = new HashMap<>();
+    Logger logger = LoggerFactory.getLogger(UtilisateurResource.class);
 
     @POST
 
-    public User createUser(User user) {
+    public Utilisateur createUser(Utilisateur user) {
         int id = users.size();
         user.setId(id + 1);
         users.put(user.getId(), user);
@@ -37,8 +37,8 @@ public class UserResource {
         return Response.accepted().status(Status.NOT_FOUND).build();
     }
 
-    protected User find(String name) {
-        for (User user : users.values()) {
+    protected Utilisateur find(String name) {
+        for (Utilisateur user : users.values()) {
             if (user.getName().equals(name)) {
                 return user;
             }
@@ -46,27 +46,27 @@ public class UserResource {
         return null;
     }
 
-    protected User find(int id) {
+    protected Utilisateur find(int id) {
         return users.get(id);
     }
 
     @PUT
     @Path("{id}")
     public Response updateUser(@PathParam("id") int id,
-                               User user) {
-        User oldUser = find(id);
+                               Utilisateur user) {
+        Utilisateur oldUser = find(id);
         logger.info("Should update user with id: " + id + " (" + oldUser + ") to " + user);
         if (user == null) {
             throw new WebApplicationException(404);
         }
-        oldUser.setName(user.getName());
+        oldUser.setNom(user.getName());
         return Response.status(200).entity(oldUser).build();
     }
 
     @GET
     @Path("/{name}")
-    public User getUser(@PathParam("name") String name) {
-        User out = find(name);
+    public Utilisateur getUser(@PathParam("name") String name) {
+        Utilisateur out = find(name);
         if (out == null) {
             throw new WebApplicationException(404);
         }
@@ -74,7 +74,7 @@ public class UserResource {
     }
 
     @GET
-    public List<User> getUsers(@DefaultValue("10") @QueryParam("limit") int limit) {
+    public List<Utilisateur> getUsers(@DefaultValue("10") @QueryParam("limit") int limit) {
         return new ArrayList<>(users.values());
     }
 

@@ -1,6 +1,5 @@
 package fr.iutinfo.skeleton.web;
 
-import fr.iutinfo.skeleton.auth.AuthFilter;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.TracingConfig;
@@ -21,7 +20,7 @@ public class WebConfig extends ResourceConfig {
     }
 
     private void registerSecurity() {
-        register(AuthFilter.class);
+        //register(AuthFilter.class);
         register(RolesAllowedDynamicFeature.class);
     }
 

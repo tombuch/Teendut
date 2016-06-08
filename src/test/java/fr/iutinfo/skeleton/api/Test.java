@@ -15,7 +15,7 @@ public class Test {
 		Connection connection = null;
 		try{
 			Scanner sc = new Scanner(System.in);
-			connection = DriverManager.getConnection("jdbc:sqlite:bddTeendut.db");
+			connection = DriverManager.getConnection("jdbc:sqlite:database/bddTeendut.db");
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery("Select * from Utilisateurs;");
 			while(rs.next()){

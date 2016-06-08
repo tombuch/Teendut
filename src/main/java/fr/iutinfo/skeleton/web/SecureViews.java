@@ -2,8 +2,9 @@ package fr.iutinfo.skeleton.web;
 
 
 import fr.iutinfo.skeleton.api.BDDFactory;
-import fr.iutinfo.skeleton.api.User;
-import fr.iutinfo.skeleton.api.UserDao;
+import fr.iutinfo.skeleton.api.Utilisateur;
+import fr.iutinfo.skeleton.api.UtilisateurDao;
+
 import org.glassfish.jersey.server.mvc.Template;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ import java.net.URISyntaxException;
 @Produces(MediaType.TEXT_HTML)
 public class SecureViews {
     final static Logger logger = LoggerFactory.getLogger(SecureViews.class);
-    private static UserDao dao = BDDFactory.getDbi().open(UserDao.class);
+    private static UtilisateurDao dao = BDDFactory.getDbi().open(UtilisateurDao.class);
 
     @GET
     @Template
@@ -28,18 +29,18 @@ public class SecureViews {
     public SecureDto allUsers(@Context SecurityContext context) {
         SecureDto secureDto = new SecureDto();
         secureDto.setUsers(dao.all());
-        secureDto.setCurrentUser((User) context.getUserPrincipal());
+        secureDto.setCurrentUser((Utilisateur) context.getUserPrincipal());
         return secureDto;
     }
 
     @GET
     @Path("/login")
-    public User login(@Context SecurityContext context, @QueryParam("user") String oldLogin, @Context UriInfo uriInfo) throws URISyntaxException {
-        User currentUser = (User) context.getUserPrincipal();
-        User oldUser = dao.findByName(oldLogin);
-        if (oldUser == null) {
-            oldUser = User.getAnonymousUser();
-        }
+    public Utilisateur login(@Context SecurityContext context, @QueryParam("user") String oldLogin, @Context UriInfo uriInfo) throws URISyntaxException {
+        Utilisateur currentUser = (Utilisateur) context.getUserPrincipal();
+        Utilisateur oldUser = dao.findByName(oldLogin);
+      //  if (oldUser == null) {
+       //     oldUser = Utilisateur.getAnonymousUser();
+        //}
         logger.debug("User - current : " + currentUser.toString() + ", old : " + oldUser.toString());
         if (currentUser.getId() == oldUser.getId()) {
             requestLoginForm();
@@ -56,7 +57,7 @@ public class SecureViews {
                 .entity("Ressouce requires login.").build());
     }
 
-    private void setCookieAndRedirectToUserDetail(User currentUser, UriInfo uriInfo) throws URISyntaxException {
+    private void setCookieAndRedirectToUserDetail(Utilisateur currentUser, UriInfo uriInfo) throws URISyntaxException {
         URI location = UriBuilder.fromResource(UserViews.class).path("/" + currentUser.getId()).build();
         logger.debug("Redirect to " + location);
         throw new WebApplicationException(Response

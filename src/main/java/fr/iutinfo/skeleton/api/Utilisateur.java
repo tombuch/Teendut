@@ -9,17 +9,15 @@ import org.slf4j.LoggerFactory;
 import java.security.Principal;
 import java.security.SecureRandom;
 
-public class User implements Principal {
-    final static Logger logger = LoggerFactory.getLogger(User.class);
+public class Utilisateur implements Principal {
+    final static Logger logger = LoggerFactory.getLogger(Utilisateur.class);
 
     private String nom;
     private String prenom;
     private String email;
+    private int id;
     
-    public User(String nom, String prenom, String mail) {
-        this.nom=nom;
-        this.prenom=prenom;
-        this.email=mail;
+    public Utilisateur(){
     }
 
     public String getEmail() {
@@ -45,5 +43,13 @@ public class User implements Principal {
 	@Override
 	public String getName() {
 		return this.nom;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
