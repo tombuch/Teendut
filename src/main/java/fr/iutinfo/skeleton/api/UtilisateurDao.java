@@ -12,7 +12,7 @@ public interface UtilisateurDao {
 	@SqlUpdate("insert into Utilisateurs (nom,prenom,mail) values (:nom, :prenom, :email)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Utilisateur user);
-
+	
 	@SqlQuery("select * from Utilisateurs where nom = :name")
     @RegisterMapperFactory(BeanMapperFactory.class)
 	Utilisateur findByName(@Bind("name") String name);
