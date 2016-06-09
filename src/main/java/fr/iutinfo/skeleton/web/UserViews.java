@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-@Path("/user")
+@Path("/Utilisateur")
 @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 @Produces(MediaType.TEXT_HTML)
 public class UserViews {
@@ -19,7 +19,7 @@ public class UserViews {
 
     @GET
     @Template
-    public List<Utilisateur> getAll() {
+    public Utilisateur getAll() {
         return dao.all();
     }
 
