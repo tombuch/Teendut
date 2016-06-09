@@ -9,7 +9,7 @@ import java.util.List;
 public interface UtilisateurDao {
 	
 
-	@SqlUpdate("insert into Utilisateurs (nom,prenom,mail) values (:nom, :prenom, :email)")
+	@SqlUpdate("insert into Utilisateurs(nom,prenom,naissance,sexe,mail,password,recherche,urlphoto,formation,bio) values (:nom, :prenom,:dateNaissance, :sexe, :email,:password, :recherche,:urlphoto,:formation,:bio)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Utilisateur user);
 	

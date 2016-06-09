@@ -1,12 +1,18 @@
 package fr.iutinfo.skeleton.api;
 
-import org.simpleframework.util.thread.Daemon;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
+import java.sql.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import java.util.List;
 
 @Path("/userdb")
 @Produces(MediaType.APPLICATION_JSON)
@@ -21,9 +27,18 @@ public class UtilisateurDBResource {
 			tmp.setNom("Jean");
 			tmp.setPrenom("Jean");
 			tmp.setEmail("moncul@gmail.com");
+			tmp.setSexe(1);
+			tmp.setRecherche(2);
+			tmp.setDateNaissance("12/12/1995");
+			tmp.setBio("slt c jean mdr tro bi1 , je cherch dla zouz");
+			tmp.setFormation("Ordinateur");
+			tmp.setPassword("kikoolol123");
+			tmp.setUrlphoto("http://tg.com/jean");
+			System.out.println(tmp.getDateNaissance().toString());
+			System.out.println(dao.findByName("heyse").getNom());
 			dao.insert(tmp);
 		} catch (Exception e) {
-			System.out.println("Table déjà là !");
+			System.out.println(e);
 		}
 	}
 	
