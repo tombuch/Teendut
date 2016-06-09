@@ -1,5 +1,7 @@
 package teendut.client;
 
+import java.util.Scanner;
+
 import javax.ws.rs.client.ClientBuilder;
 
 import fr.iutinfo.skeleton.api.Utilisateur;
@@ -24,6 +26,15 @@ public class TeendutClient {
 	}
 	
 	public static void main(String[] args) {
-		new TeendutClient().testhttp();
+		
+		// PRESENTATION
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("TeenDUT");
+		System.out.println("Ne repars pas qu'avec ton DUT\n");
+
+		Utilisateur connect = null;
+		
+		
 	}
 }

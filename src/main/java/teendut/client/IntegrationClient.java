@@ -1,9 +1,11 @@
 package teendut.client;
 
 import java.util.Scanner;
+import fr.iutinfo.skeleton.api.Utilisateur;
+
 
 public class IntegrationClient {
-	Utilisateurs connexion = null;
+	Utilisateur connexion = null;
 	
 	// PRESENTATION
 
@@ -36,7 +38,7 @@ public class IntegrationClient {
 		System.out.println("Veuillez rentrer votre password : ");
 		str = sc.nextLine();
 		password = str;
-		bdd.addUtilisateurs(connexion = new Utilisateurs(nom,prenom,mail,password));
+		bdd.addUtilisateur(connexion = new Utilisateur(nom,prenom,mail,password));
 		System.out.println("Vous êtes enregistré et connecté");
 	} else if (str.equals("connecter")) {
 		String nom;
@@ -47,7 +49,7 @@ public class IntegrationClient {
 		System.out.println("Veuillez rentrer votre password : ");
 		str = sc.nextLine();
 		password = str;
-		for (Utilisateurs uti : bdd.getUtilisateurs()) {
+		for (Utilisateur uti : bdd.getUtilisateur()) {
 			if (nom.equals(uti.getNom())) {
 				if (password.equals(uti.getPassword())) {
 					System.out.println("Vous êtes connecté");
@@ -65,7 +67,7 @@ public class IntegrationClient {
 	// PROFILS
 
 	System.out.println("Salut "+connexion.getPrenom()+", profils à voir :");
-	for(Utilisateurs u : bdd.getUtilisateurs()) {
+	for(Utilisateur u : bdd.getUtilisateur()) {
 		if (!u.equals(connexion)) {
 			System.out.println("Nom : "+u.getNom()+", Prenom : "+u.getPrenom()+", Mail : "+u.getEmail());	
 			str = sc.nextLine();
@@ -105,7 +107,7 @@ public class IntegrationClient {
 	//MATCHS
 
 	System.out.println("\nVoici avec qui tu as matché :");
-	for (Utilisateurs u : bdd.getUtilisateurs()) {
+	for (Utilisateur u : bdd.getUtilisateur()) {
 		connexion.getMatch(u, bdd);
 	}
 }

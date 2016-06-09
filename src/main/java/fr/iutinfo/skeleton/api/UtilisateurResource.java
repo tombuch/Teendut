@@ -20,7 +20,6 @@ public class UtilisateurResource {
     Logger logger = LoggerFactory.getLogger(UtilisateurResource.class);
 
     @POST
-
     public Utilisateur createUser(Utilisateur user) {
         int id = users.size();
         user.setId(id + 1);

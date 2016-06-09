@@ -10,8 +10,17 @@ public class Utilisateur {
     private String prenom;
     private String email;
     private int id;
+    private String password;
     
-    public Utilisateur(){
+    public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Utilisateur(){
     }
 
     public String getEmail() {

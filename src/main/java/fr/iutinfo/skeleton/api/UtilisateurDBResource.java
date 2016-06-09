@@ -20,8 +20,8 @@ public class UtilisateurDBResource {
 			Utilisateur tmp = new Utilisateur();
 			tmp.setNom("Jean");
 			tmp.setPrenom("Jean");
-			//tmp.setEmail("moncul@gmail.com");
-			//dao.insert(tmp);
+			tmp.setEmail("moncul@gmail.com");
+			dao.insert(tmp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -29,7 +29,6 @@ public class UtilisateurDBResource {
 	
 	@POST
 	public Utilisateur createUser(Utilisateur user) {
-       // user.resetPasswordHash();
         dao.insert(user);
         int id = dao.insert(user);
         user.setId(id);
@@ -50,9 +49,4 @@ public class UtilisateurDBResource {
 	public Utilisateur getAllUsers() {
 		return dao.all();
 	}
-	
-	/*public static void main(String[] args) {
-		UtilisateurDBResource test = new UtilisateurDBResource();
-		System.out.println(test.getAllUsers());
-	}*/
 }
