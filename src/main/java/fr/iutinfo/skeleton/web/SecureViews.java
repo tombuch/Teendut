@@ -28,7 +28,7 @@ public class SecureViews {
     @Path("/secure")
     public SecureDto allUsers(@Context SecurityContext context) {
         SecureDto secureDto = new SecureDto();
-        secureDto.setUsers(dao.all());
+        //secureDto.setUsers(dao.all());
         secureDto.setCurrentUser((Utilisateur) context.getUserPrincipal());
         return secureDto;
     }

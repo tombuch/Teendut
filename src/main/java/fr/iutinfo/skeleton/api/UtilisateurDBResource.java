@@ -1,6 +1,6 @@
 package fr.iutinfo.skeleton.api;
 
-import org.simpleframework.util.thread.Daemon;
+//import org.simpleframework.util.thread.Daemon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -8,7 +8,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/userdb")
+@Path("/Utilisateur")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurDBResource {
@@ -20,10 +20,10 @@ public class UtilisateurDBResource {
 			Utilisateur tmp = new Utilisateur();
 			tmp.setNom("Jean");
 			tmp.setPrenom("Jean");
-			tmp.setEmail("moncul@gmail.com");
-			dao.insert(tmp);
+			//tmp.setEmail("moncul@gmail.com");
+			//dao.insert(tmp);
 		} catch (Exception e) {
-			System.out.println("Table déjà là !");
+			System.out.println(e.getMessage());
 		}
 	}
 	
@@ -47,12 +47,12 @@ public class UtilisateurDBResource {
 	}
 
 	@GET
-	public List<Utilisateur> getAllUsers() {
+	public Utilisateur getAllUsers() {
 		return dao.all();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		UtilisateurDBResource test = new UtilisateurDBResource();
 		System.out.println(test.getAllUsers());
-	}
+	}*/
 }

@@ -18,11 +18,9 @@
               <h3 class="panel-title">Détail du "User"</h3>
             </div>
             <div class="panel-body">
-              Nom : ${it.name}<br/>
+              Nom : ${it.nom}<br/>
               Id : ${it.id}<br/>
-              alias : ${it.alias} <br/>
-              email : ${it.email} <br/>
-              mot de passe : ${it.passwdHash} <br/>
+              
             </div>
           </div>
         </div>

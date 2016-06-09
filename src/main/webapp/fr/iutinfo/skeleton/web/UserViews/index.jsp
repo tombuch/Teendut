@@ -16,7 +16,7 @@
           <h1>Liste des "User"</h1>
           <ul class="list-group">
             <c:forEach var="user" items="${it}">
-            <li class="list-group-item">${user.id} : <a href="user/${user.id}">${user.name}</a>
+            <li class="list-group-item">${user.id} : <a href="user/${user.id}">${user.nom}</a>
             </c:forEach>
           </ul>
         </div>

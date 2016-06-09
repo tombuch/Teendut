@@ -13,19 +13,17 @@ public interface UtilisateurDao {
 	@GetGeneratedKeys
 	int insert(@BindBean() Utilisateur user);
 	
-	@SqlQuery("select * from Utilisateurs where nom = :name")
+	@SqlQuery("select * from Utilisateurs where nom = :nom")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	Utilisateur findByName(@Bind("name") String name);
+	Utilisateur findByName(@Bind("nom") String nom);
 
 	//@SqlUpdate("drop table if exists users")
 	//void dropUserTable(); 
 
 
-	
-	
-	@SqlQuery("select * from Utilisateurs order by id")
+	@SqlQuery("select * from Utilisateurs where id = 1")
 	@RegisterMapperFactory(BeanMapperFactory.class)
-	List<Utilisateur> all();
+	Utilisateur all();
 
 	@SqlQuery("select * from Utilisateurs where id = :id")
 	@RegisterMapperFactory(BeanMapperFactory.class)
