@@ -45,7 +45,6 @@ public class UtilisateurDBResource {
 	
 	@POST
 	public Utilisateur createUser(Utilisateur user) {
-        dao.insert(user);
         int id = dao.insert(user);
         user.setId(id);
 		return user;

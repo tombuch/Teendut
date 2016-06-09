@@ -13,33 +13,10 @@ public class IntegrationClient {
 	// CONNEXION OU ENREGISTREMENT
 
 
-	/*} else if (str.equals("connecter")) {
-		String nom;
-		String password;
-		System.out.println("Veuillez rentrer votre nom : ");
-		str = sc.nextLine();
-		nom = str;
-		System.out.println("Veuillez rentrer votre password : ");
-		str = sc.nextLine();
-		password = str;
-		for (Utilisateur uti : bdd.getUtilisateur()) {
-			if (nom.equals(uti.getNom())) {
-				if (password.equals(uti.getPassword())) {
-					System.out.println("Vous êtes connecté");
-					connexion = uti;
-				}
-			}
-		}
-		if (connexion == null) {
-			System.out.println("Erreur de connexion");
-			return;
-		}
-	}
-
 
 	// PROFILS
 
-	System.out.println("Salut "+connexion.getPrenom()+", profils à voir :");
+/*	System.out.println("Salut "+connexion.getPrenom()+", profils à voir :");
 	for(Utilisateur u : bdd.getUtilisateur()) {
 		if (!u.equals(connexion)) {
 			System.out.println("Nom : "+u.getNom()+", Prenom : "+u.getPrenom()+", Mail : "+u.getEmail());	
