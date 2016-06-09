@@ -15,24 +15,15 @@ public class Utilisateur {
     private int sexe;
 	private String email;
     private int id;
-<<<<<<< HEAD
     private String password;
-    
-    public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Utilisateur(){
-=======
     private int recherche;
-    private String password;
     private String urlphoto;
     private String formation;
     private String bio;
+    
+	public Utilisateur(){
+		
+	}
     
     public String getPassword() {
 		return password;
@@ -66,9 +57,6 @@ public class Utilisateur {
 		this.bio = bio;
 	}
 
-	public Utilisateur(){
-    }
-
     public int getRecherche(){
     	return this.recherche;
     }
@@ -79,7 +67,7 @@ public class Utilisateur {
     
     public int getSexe(){
     	return sexe;
->>>>>>> 58b3d202397c7d72d154bcac3ba10e936861102a
+
     }
     
     public void setSexe(int sexe) {

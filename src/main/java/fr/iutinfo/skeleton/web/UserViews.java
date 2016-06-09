@@ -1,7 +1,6 @@
 package fr.iutinfo.skeleton.web;
 
 
-import fr.iutinfo.skeleton.api.BDDFactory;
 import fr.iutinfo.skeleton.api.*;
 import org.glassfish.jersey.server.mvc.Template;
 

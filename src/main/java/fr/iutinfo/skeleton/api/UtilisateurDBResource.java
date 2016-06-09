@@ -14,7 +14,7 @@ import java.sql.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Path("/userdb")
+@Path("/utilisateur")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurDBResource {
@@ -27,8 +27,7 @@ public class UtilisateurDBResource {
 			tmp.setNom("Jean");
 			tmp.setPrenom("Jean");
 			tmp.setEmail("moncul@gmail.com");
-<<<<<<< HEAD
-=======
+
 			tmp.setSexe(1);
 			tmp.setRecherche(2);
 			tmp.setDateNaissance("12/12/1995");
@@ -38,7 +37,6 @@ public class UtilisateurDBResource {
 			tmp.setUrlphoto("http://tg.com/jean");
 			System.out.println(tmp.getDateNaissance().toString());
 			System.out.println(dao.findByName("heyse").getNom());
->>>>>>> 58b3d202397c7d72d154bcac3ba10e936861102a
 			dao.insert(tmp);
 		} catch (Exception e) {
 			System.out.println(e);
@@ -53,6 +51,16 @@ public class UtilisateurDBResource {
 		return user;
 	}
 
+	@POST
+	@Path("/login")
+	public Utilisateur logUser(Utilisateur user){
+		Utilisateur utilisateur = dao.findByMail(user.getEmail());
+		if (utilisateur.getPassword().equals(user.getPassword()))
+			return utilisateur;
+		return null;
+	}
+	
+	
 	@GET
 	@Path("/{nom}")
 	public Utilisateur getUser(@PathParam("nom") String nom) {
@@ -64,15 +72,9 @@ public class UtilisateurDBResource {
 	}
 
 	@GET
-	public List<Utilisateur> getAllUsers() {
+	public Utilisateur getAllUsers() {
 		return dao.all();
 	}
-<<<<<<< HEAD
-=======
+
 	
-	public static void main(String[] args) {
-		UtilisateurDBResource test = new UtilisateurDBResource();
-		System.out.println(test.getAllUsers());
-	}
->>>>>>> 58b3d202397c7d72d154bcac3ba10e936861102a
 }

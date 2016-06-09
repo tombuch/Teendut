@@ -35,9 +35,9 @@ public class CreateUser {
 		utilisateur.setPassword(str);
 		
 		Entity<Utilisateur> userEntity = Entity.entity(utilisateur, MediaType.APPLICATION_JSON);
-		
-		ClientBuilder.newClient()
-		.target("http://localhost/v1/Utilisateur")
+				
+		utilisateur = ClientBuilder.newClient()
+		.target("http://localhost:8080/v1/utilisateur")
 		.request()
 		.post(userEntity)
 		.readEntity(Utilisateur.class);

@@ -9,38 +9,11 @@ public class IntegrationClient {
 	
 	// PRESENTATION
 
-	Scanner sc = new Scanner(System.in);
-	System.out.println("TeenDUT");
-	System.out.println("Ne repars pas qu'avec ton DUT\n");
-
+	
 	// CONNEXION OU ENREGISTREMENT
 
-	System.out.println("Tapez enregistrer ou connecter");
-	String str = sc.nextLine();
-	while (!(str.equals("enregistrer")) && !(str.equals("connecter"))) {
-		System.out.println("Veuillez répondre par enregistrer ou connecter");
-		str = sc.nextLine();
-	}
-	if (str.equals("enregistrer")) {
-		String nom;
-		String prenom;
-		String mail;
-		String password;
-		System.out.println("Veuillez rentrer votre nom : ");
-		str = sc.nextLine();
-		nom = str;
-		System.out.println("Veuillez rentrer votre prenom : ");
-		str = sc.nextLine();
-		prenom = str;
-		System.out.println("Veuillez rentrer votre mail : ");
-		str = sc.nextLine();
-		mail = str;
-		System.out.println("Veuillez rentrer votre password : ");
-		str = sc.nextLine();
-		password = str;
-		bdd.addUtilisateur(connexion = new Utilisateur(nom,prenom,mail,password));
-		System.out.println("Vous êtes enregistré et connecté");
-	} else if (str.equals("connecter")) {
+
+	/*} else if (str.equals("connecter")) {
 		String nom;
 		String password;
 		System.out.println("Veuillez rentrer votre nom : ");
@@ -109,5 +82,5 @@ public class IntegrationClient {
 	System.out.println("\nVoici avec qui tu as matché :");
 	for (Utilisateur u : bdd.getUtilisateur()) {
 		connexion.getMatch(u, bdd);
-	}
+	}*/
 }
