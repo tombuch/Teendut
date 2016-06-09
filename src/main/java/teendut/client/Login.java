@@ -1,6 +1,6 @@
 package teendut.client;
 
-import java.net.URL;
+
 import java.util.Scanner;
 
 import javax.ws.rs.client.ClientBuilder;

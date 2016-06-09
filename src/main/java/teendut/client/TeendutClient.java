@@ -42,6 +42,7 @@ public class TeendutClient {
 		while (!(str.equals("enregistrer")) && !(str.equals("connecter"))) {
 			System.out.println("Veuillez répondre par enregistrer ou connecter");
 			str = sc.nextLine();
+			
 		}
 		if (str.equals("enregistrer")){
 			connect = new CreateUser().getUser();
@@ -54,6 +55,8 @@ public class TeendutClient {
 					System.out.println("fail connect");
 			}
 		}
-		System.out.println(connect.getId());
+		sc.close();
+		new SeeProfiles().getProfiles(connect);
+	//	System.out.println(connect.getId());
 	}
 }

@@ -19,9 +19,9 @@ import org.slf4j.LoggerFactory;
 @Consumes(MediaType.APPLICATION_JSON)
 public class UtilisateurDBResource {
 	private static UtilisateurDao dao = BDDFactory.getDbi().open(UtilisateurDao.class);
-    final static Logger logger = LoggerFactory.getLogger(UtilisateurDBResource.class);
+	final static Logger logger = LoggerFactory.getLogger(UtilisateurDBResource.class);
 
-    public UtilisateurDBResource() {
+	public UtilisateurDBResource() {
 		try {
 			Utilisateur tmp = new Utilisateur();
 			tmp.setNom("Jean");
@@ -42,11 +42,11 @@ public class UtilisateurDBResource {
 			System.out.println(e);
 		}
 	}
-	
+
 	@POST
 	public Utilisateur createUser(Utilisateur user) {
-        int id = dao.insert(user);
-        user.setId(id);
+		int id = dao.insert(user);
+		user.setId(id);
 		return user;
 	}
 
@@ -58,9 +58,17 @@ public class UtilisateurDBResource {
 			return utilisateur;
 		return null;
 	}
-	
-	
+
 	@GET
+	@Path("/{id}")
+	public Utilisateur getProfiles(@PathParam("id") int id) {
+		Utilisateur user = dao.findById(id);
+		
+		return user;
+	}
+
+
+/*	@GET
 	@Path("/{nom}")
 	public Utilisateur getUser(@PathParam("nom") String nom) {
 		Utilisateur user = dao.findByName(nom);
@@ -68,12 +76,12 @@ public class UtilisateurDBResource {
 			throw new WebApplicationException(404);
 		}
 		return user;
-	}
+	}*/
 
 	@GET
 	public Utilisateur getAllUsers() {
 		return dao.all();
 	}
 
-	
+
 }
