@@ -9,21 +9,23 @@ import java.util.List;
 public interface UtilisateurDao {
 	
 
-	@SqlUpdate("insert into Utilisateurs (nom,prenom,mail) values (:nom, :prenom, :email)")
+	@SqlUpdate("insert into Utilisateurs(nom,prenom,naissance,sexe,mail,password,recherche,urlphoto,formation,bio) values (:nom, :prenom,:dateNaissance, :sexe, :email,:password, :recherche,:urlphoto,:formation,:bio)")
 	@GetGeneratedKeys
 	int insert(@BindBean() Utilisateur user);
 	
-	@SqlQuery("select * from Utilisateurs where nom = :nom")
+	@SqlQuery("select * from Utilisateurs where nom = :name")
     @RegisterMapperFactory(BeanMapperFactory.class)
-	Utilisateur findByName(@Bind("nom") String nom);
+	Utilisateur findByName(@Bind("name") String name);
 
 	//@SqlUpdate("drop table if exists users")
 	//void dropUserTable(); 
 
 
-	@SqlQuery("select * from Utilisateurs where id = 1")
+	
+	
+	@SqlQuery("select * from Utilisateurs order by id")
 	@RegisterMapperFactory(BeanMapperFactory.class)
-	Utilisateur all();
+	List<Utilisateur> all();
 
 	@SqlQuery("select * from Utilisateurs where id = :id")
 	@RegisterMapperFactory(BeanMapperFactory.class)
